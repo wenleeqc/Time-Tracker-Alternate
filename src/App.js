@@ -1,7 +1,7 @@
 import { createMuiTheme, ThemeProvider, makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import NavBar from './components/NavBar'
-import CsvReader from './CsvReader';
+import CsvReader from './components/CsvReader';
 import Grid from './components/Grid'
 import Footer from './components/Footer'
 import './App.css';
@@ -12,6 +12,8 @@ import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import ImportExportIcon from '@material-ui/icons/ImportExport';
 import ComputerIcon from '@material-ui/icons/Computer';
 import HttpIcon from '@material-ui/icons/Http';
+
+import Chart from './Chart.js'
 
 const theme = createMuiTheme({
   palette: {
@@ -88,6 +90,8 @@ function App() {
           <Footer />
         </div>
       </ThemeProvider>
+
+      <Chart />
     </div>
   );
 }
