@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+
+import Chart from './Chart.js'
 
 export default function CsvReader() {
   const [csvFile, setCsvFile] = useState();
@@ -17,7 +19,11 @@ export default function CsvReader() {
       return eachObject;
     })
 
+    console.log('before set csv array', newArray)
+
     setCsvArray(newArray)
+
+    console.log('after set csv array', csvArray)
   }
 
   const submit = () => {
@@ -32,6 +38,25 @@ export default function CsvReader() {
 
     reader.readAsText(file);
   }
+
+  // new
+  // send csv data to express
+  // POST request using fetch inside useEffect React hook
+
+
+  useEffect(() => {
+    console.log('in CsvReader: useEffect', csvArray)
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(csvArray)
+    };
+    fetch('http://localhost:8080/csv', requestOptions)
+      //.then(res => console.log(res))
+      .then(response => console.log('returned message', response));
+
+  // empty dependency array means this effect will only run once (like componentDidMount in classes)
+  }, [csvArray]);
 
   return (
     <form id='csv-form'>
@@ -61,6 +86,7 @@ export default function CsvReader() {
             <thead>
               <th>Website</th>
               <th>Time</th>
+              <th><Chart csvData={csvArray}/></th>
             </thead>
             <tbody>
               {

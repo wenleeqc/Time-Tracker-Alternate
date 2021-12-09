@@ -13,7 +13,8 @@ import ImportExportIcon from '@material-ui/icons/ImportExport';
 import ComputerIcon from '@material-ui/icons/Computer';
 import HttpIcon from '@material-ui/icons/Http';
 
-import Chart from './Chart.js'
+import Chart from './components/Chart.js';
+import ChartTwo from './components/ChartTwo.js';
 
 const theme = createMuiTheme({
   palette: {
@@ -66,7 +67,6 @@ function App() {
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
-        <NavBar />
         <div className={classes.wrapper}>
           <Typography variant="h4" className={classes.bigSpace} color="primary">
             Time Tracker
@@ -86,12 +86,9 @@ function App() {
           <Grid icon={<HttpIcon style={{ fill: "#2EA09D", height: "125", width: "125" }} />} title="Connected" btnTitle="Show me More" />
         </div> */}
         <CsvReader />
-        <div className={classes.bigSpace}>
-          <Footer />
-        </div>
       </ThemeProvider>
-
-      <Chart />
+    
+    <Chart />
     </div>
   );
 }
